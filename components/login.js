@@ -4,6 +4,13 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import logo from "../assets/images/meet_logo.png";
 
 export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+  }
+  login() {
+
+  }
   render() {
     var today = new Date();
     return(
