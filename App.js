@@ -6,9 +6,10 @@ import Groups from "./components/group.js";
 type Props = {};
 export default class App extends Component<Props> {
   render() {
+    if(this.state.page)
     return (
       <View style={styles.container}>
-        <Groups />
+        <Login />
       </View>
     );
   }

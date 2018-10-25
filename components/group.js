@@ -66,14 +66,14 @@ export default class Groups extends Component {
                                placeholder="Enter ID's of users to invite:"
                                placeholderTextColor="#888"
                     />
-                    <TouchableOpacity onPress={this.addId()} style={[groupCreateStyles.plus, {borderTopColor: this.state.borderColour, borderRightColor: this.state.borderColour, borderBottomColor: this.state.borderColour}]}>
+                    <TouchableOpacity activeOpacity={0.8} style={[groupCreateStyles.plus, {borderTopColor: this.state.borderColour, borderRightColor: this.state.borderColour, borderBottomColor: this.state.borderColour}]}>
                         <Text style={groupCreateStyles.plusButton}>+</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={groupCreateStyles.groupMembers}>
                   <Member text={this.state.testText} />
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5}>
                     <View style={groupCreateStyles.goButton}>
                         <Text style={groupCreateStyles.goButtonText}>Meet Up!</Text>
                     </View>
