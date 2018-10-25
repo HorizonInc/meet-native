@@ -4,17 +4,33 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'reac
 class Member extends Component {
     constructor(props) {
       super(props);
-      this.state = {};
+      this.state = {
+        ids: this.props.members
+      };
     }
     render() {
-        return(
-          <View style={memberStyles.container}>
-              <Text>{this.props.id}</Text>
-              {/*<TouchableOpacity style={memberStyles.xButton}>
-                  <Text style={memberStyles.x}>X</Text>
-              </TouchableOpacity>*/}
-          </View>
-        );
+        return this.state.ids.map(member => {
+          console.log(member);
+          if(this.state.ids.indexOf(member) % 2 === 0) {
+            return(
+              <View style={memberStyles.container} key={this.state.ids.indexOf(member)}>
+                    <Text style={memberStyles.text}>{member}</Text>
+                    {/*<TouchableOpacity style={memberStyles.xButton}>
+                        <Text style={memberStyles.x}>X</Text>
+                    </TouchableOpacity>*/}
+              </View>
+            );
+          } else {
+            return(
+              <View style={[memberStyles.container, memberStyles.grey]} key={this.state.ids.indexOf(member)}>
+                    <Text style={memberStyles.text}>{member}</Text>
+                    {/*<TouchableOpacity style={memberStyles.xButton}>
+                        <Text style={memberStyles.x}>X</Text>
+                    </TouchableOpacity>*/}
+              </View>
+            );
+          }
+        });
     }
 }
 
@@ -25,14 +41,11 @@ export default class Groups extends Component {
           text: "",
           testText: "",
           borderColour: "#fff",
-          ids: [
-            "",
-          ],
+          ids: [],
         };
     }
-    checkID() {
-        let str = this.state.text;
-        let isCorrect = /^([A-Z]+#[A-Z0-9]{5})$/.test(str);
+    checkID(str) {
+        let isCorrect = /^([A-Z]+#[A-Z0-9]{6})$/.test(str);
         if(str === "") {
             this.setState({borderColour: "#fff"});
         } else if (isCorrect) {
@@ -46,10 +59,12 @@ export default class Groups extends Component {
     }
     addId() {
         let id = this.state.text;
-        if(this.checkID()) {
+        console.log("trying to add ID");
+        if(this.checkID(id)) {
             let idArray = this.state.ids;
-            idArray.push(this.state.text);
-            this.setState({ids: idArray});
+            idArray.push(id);
+            this.setState({ids: idArray, text: ""});
+            console.log(this.state);
         }
     }
     render() {
@@ -60,18 +75,18 @@ export default class Groups extends Component {
                     <TextInput style={[groupCreateStyles.input, {borderTopColor: this.state.borderColour, borderLeftColor: this.state.borderColour, borderBottomColor: this.state.borderColour}]}
                                onChangeText={(textIn) => {
                                                           this.setState({text: textIn});
-                                                          this.checkID();
+                                                          this.checkID(textIn);
                                                         }}
                                value={this.state.text}
                                placeholder="Enter ID's of users to invite:"
                                placeholderTextColor="#888"
                     />
-                    <TouchableOpacity activeOpacity={0.8} style={[groupCreateStyles.plus, {borderTopColor: this.state.borderColour, borderRightColor: this.state.borderColour, borderBottomColor: this.state.borderColour}]}>
+                    <TouchableOpacity onPress={() => {this.addId()}} activeOpacity={0.8} style={[groupCreateStyles.plus, {borderTopColor: this.state.borderColour, borderRightColor: this.state.borderColour, borderBottomColor: this.state.borderColour}]}>
                         <Text style={groupCreateStyles.plusButton}>+</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={groupCreateStyles.groupMembers}>
-                  <Member text={this.state.testText} />
+                  <Member members={this.state.ids} />
                 </View>
                 <TouchableOpacity activeOpacity={0.5}>
                     <View style={groupCreateStyles.goButton}>
@@ -145,6 +160,7 @@ const groupCreateStyles = StyleSheet.create({
         borderColor: "#fff"
     },
     groupMembers: {
+        paddingTop: 5,
         top: 180,
         width: 340,
         height: 360,
@@ -175,5 +191,13 @@ const groupCreateStyles = StyleSheet.create({
 });
 
 const memberStyles = StyleSheet.create({
+    container: {
+        justifyContent: "center",
+        height: 35,
+        paddingLeft: 15,
 
+    },
+    grey: {
+        backgroundColor: "#F3F3F3"
+    }
 });
