@@ -9,7 +9,7 @@ export default class Login extends Component {
     this.login = this.login.bind(this);
   }
   login() {
-    
+
   }
   render() {
     var today = new Date();
@@ -17,7 +17,7 @@ export default class Login extends Component {
       <View style={loginStyles.container}>
         <Image style={loginStyles.logo} source={logo} />
         <Text style={loginStyles.meet}>meet</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {this.props.navigation.navigate('Groups')}}>
           <View style={loginStyles.loginButton}>
             <Text style={loginStyles.loginText}>Login with Facebook</Text>
           </View>
