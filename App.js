@@ -8,7 +8,8 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Groups />
+        <Login />
+        {/*<Groups />*/}
       </View>
     );
   }

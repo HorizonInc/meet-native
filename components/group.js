@@ -58,13 +58,17 @@ export default class Groups extends Component {
 
     }
     addId() {
-        let id = this.state.text;
-        console.log("trying to add ID");
-        if(this.checkID(id)) {
-            let idArray = this.state.ids;
-            idArray.push(id);
-            this.setState({ids: idArray, text: ""});
-            console.log(this.state);
+        if(this.state.ids.length < 8) {
+            let id = this.state.text;
+            console.log("trying to add ID");
+            if(this.checkID(id)) {
+                let idArray = this.state.ids;
+                idArray.push(id);
+                this.setState({ids: idArray, text: ""});
+                console.log(this.state);
+            }
+        } else {
+           console.log("You have exceeded the maximum number of members in this group!");
         }
     }
     render() {
@@ -195,7 +199,11 @@ const memberStyles = StyleSheet.create({
         justifyContent: "center",
         height: 35,
         paddingLeft: 15,
-
+    },
+    text: {
+        fontSize: 16,
+        fontWeight: "700",
+        color: "#888"
     },
     grey: {
         backgroundColor: "#F3F3F3"
