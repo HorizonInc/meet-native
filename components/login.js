@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 import logo from "../assets/images/meet_logo.png";
 
@@ -28,6 +29,9 @@ export default class Login extends Component {
   }
 }
 
+// width: wp('50%'),
+// height: hp('50%'),
+
 const loginStyles = StyleSheet.create({
     container: {
       flex: 1,
@@ -38,7 +42,7 @@ const loginStyles = StyleSheet.create({
     },
     logo: {
       width: 190,
-      height: 190,
+      height: 190
     },
     meet: {
       fontSize: 35,
@@ -53,7 +57,7 @@ const loginStyles = StyleSheet.create({
     loginButton: {
       alignItems: "center",
       justifyContent: "center",
-      width: 300,
+      width: wp('90%'),
       height: 50,
       backgroundColor: "#fff",
       color: "#000",
@@ -64,7 +68,7 @@ const loginStyles = StyleSheet.create({
       shadowOpacity: 1.0,
     },
     copyright: {
-      bottom: -230,
       color: "#bdc3c7",
+      bottom: -(hp('25%')),
     }
 });

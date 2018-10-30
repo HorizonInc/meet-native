@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 class Member extends Component {
     constructor(props) {
@@ -92,8 +93,8 @@ export default class Groups extends Component {
                 <View style={groupCreateStyles.groupMembers}>
                   <Member members={this.state.ids} />
                 </View>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <View style={groupCreateStyles.goButton}>
+                <TouchableOpacity style={groupCreateStyles.goButton} activeOpacity={0.5} onPress={() => {this.props.navigation.navigate('mapScreen');}}>
+                    <View>
                         <Text style={groupCreateStyles.goButtonText}>Meet Up!</Text>
                     </View>
                 </TouchableOpacity>
@@ -115,8 +116,8 @@ const groupCreateStyles = StyleSheet.create({
         bottom: 2
     },
     plus: {
-        width: 50,
-        height: 50,
+        width: wp('12%'),
+        height: hp('6%'),
         backgroundColor: "#fff",
         borderTopWidth: 3,
         borderBottomWidth: 3,
@@ -127,30 +128,31 @@ const groupCreateStyles = StyleSheet.create({
         shadowOffset:{  width: 3,  height: 3,  },
         shadowColor: "rgba(0, 0, 0, 0.1)",
         shadowOpacity: 1.0,
-        left: 142,
-        top: 90,
+        marginLeft: wp('77%'),
+        marginBottom: hp('6%'),
+        bottom: hp('6%'),
         justifyContent: "center",
         alignItems: "center",
     },
     inputContainer: {
-        width: 340,
+        width: wp('100%'),
         height: 50,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        marginTop: hp('15%'),
     },
     title: {
         fontSize: 35,
         fontFamily: "Arial",
-        top: 80,
+        marginTop: hp('10%'),
         fontWeight: "700",
         color: "#68bde1",
     },
     input: {
         right: 25,
-        top: 140,
         paddingLeft: 20,
-        width: 290,
-        height: 50,
+        width: wp('75%'),
+        height: hp('6%'),
         backgroundColor: "#fff",
         borderTopLeftRadius: 15,
         borderBottomLeftRadius: 15,
@@ -165,9 +167,8 @@ const groupCreateStyles = StyleSheet.create({
     },
     groupMembers: {
         paddingTop: 5,
-        top: 180,
         width: 340,
-        height: 360,
+        height: hp('40%'),
         borderRadius: 15,
         backgroundColor: "#fff",
         shadowOffset:{  width: 3,  height: 3,  },
@@ -175,7 +176,6 @@ const groupCreateStyles = StyleSheet.create({
         shadowOpacity: 1.0,
     },
     goButton: {
-        top: 250,
         width: 340,
         height: 60,
         borderRadius: 15,

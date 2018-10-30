@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 
 import Login from "./components/login.js";
 import Groups from "./components/group.js";
+import mapScreen from "./components/mapScreen.js";
 
 const RootStack = createStackNavigator({
     Home: {
@@ -11,6 +12,9 @@ const RootStack = createStackNavigator({
     },
     Groups: {
       screen: Groups
+    },
+    mapScreen: {
+      screen: mapScreen
     }
 },{
   initalRouteName: 'Home',
