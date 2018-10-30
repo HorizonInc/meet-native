@@ -1,5 +1,0 @@
-cache:
-  directories:
-    - node_modules
-
-script: react-native run-ios
